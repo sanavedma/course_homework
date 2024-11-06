@@ -4,7 +4,7 @@ import time
 class User:
     def __init__(self, nickname, password, age):
         self.nickname = nickname
-        self.password = hashlib.sha256(password.encode()).hexdigest() # Хэшируем пароль
+        self.password = hashlib.sha256(password.encode()).hexdigest()
         self.age = age
 
     def __str__(self):
@@ -53,17 +53,14 @@ class UrTube:
         new_user = User(nickname, password, age)
         self.users.append(new_user)
         self.current_user = new_user
-        # print(f"Пользователь {nickname} успешно зарегистрирован")
 
     def log_out(self):
         self.current_user = None
-        # print("Вы вышли из системы")
 
     def add(self, *videos):
         for video in videos:
             if video not in self.videos:
                 self.videos.append(video)
-                # print(f"Видео '{video.title}' добавлено.")
 
     def get_videos(self, search_word):
         results = []
@@ -82,16 +79,14 @@ class UrTube:
                 if video.adult_mode and self.current_user.age < 18:
                     print("Вам нет 18 лет, пожалуйста покиньте страницу")
                     return
-                # print(f"Просмотр видео '{title}' начался...")
                 while video.time_now < video.duration:
                     video.time_now += 1
                     print(video.time_now)
-                    time.sleep(1) # Пауза в 1 секунду
-                video.time_now = 0 # Сброс времени просмотра
+                    time.sleep(1)
+                video.time_now = 0
                 print("Конец видео")
                 return
 
-        # print(f"Видео '{title}' не найдено")
 
 ur = UrTube()
 v1 = Video('Лучший язык программирования 2024 года', 200)
