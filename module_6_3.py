@@ -28,10 +28,10 @@ class Animal:
             print(self.sound)
 
     def attack(self):
-        if self._DEGREE_OF_DANGER < 5:
-            print("Sorry, i'm peaceful :)")
-        else:
+        if self._DEGREE_OF_DANGER >= 5:
             print("Be careful, i'm attacking you 0_0")
+        else:
+            print("Sorry, i'm peaceful :)")
 
 
 class Bird(Animal):
@@ -50,7 +50,7 @@ class AquaticAnimal(Animal):
 class PoisonousAnimal(Animal):
     _DEGREE_OF_DANGER = 8
 
-class Duckbill(Bird, AquaticAnimal, PoisonousAnimal):
+class Duckbill(PoisonousAnimal, AquaticAnimal, Bird):
     sound = "Click-click-click"
 
 db = Duckbill(10)
